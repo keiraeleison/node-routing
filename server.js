@@ -21,6 +21,14 @@ app.get('/contact', function(req, res) {
   res.sendFile(__dirname + '/contact.html');
 });
 
+app.get('/:username/:post_slug', function(req, res) {
+  console.log(req.params);
+
+  // grab user profile
+  // grab the post
+  res.send('You are reading ' + req.params.post_slug + 'from ' + req.params.username);
+});
+
 app.post('/contact', function(req, res) {
   console.log(req.body);
   res.send('Hello, ' + req.body.name);
