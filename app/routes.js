@@ -5,26 +5,35 @@ var path = require('path');
 // export the router
 module.exports = router;
 
+// routes defined here
+
 // apply routes
-router.get('/', function(req, res) {
+router.get('/',         showHome);
+router.get('/about',    showAbout);
+router.get('/contact',  showContact); 
+router.post('/contact', processContact);
+router.get('/:username/:post_slug', showProfile); 
+router.use(show404);
+
+function showHome(req,res) {
   //res.send('Welcome to the home page!');
-  res.sendFile((__dirname, '../index.html'));
-});
+  res.sendFile(path.join(__dirname, '../index.html'));
+};
 
-router.get('/about', function(req, res) {
+function showAbout(req, res) {
   res.json({message: 'This will be the about page' });
-}); 
+}; 
 
-router.get('/contact', function(req, res) {
+function showContact(req, res) {
   res.sendFile(path.join(__dirname, '../contact.html'));
-});
+};
 
-router.post('/contact', function(req, res) {
+function processContact(req, res) {
   console.log(req.body);
   res.send('Hello, ' + req.body.name);
-});
+};
 
-router.get('/:username/:post_slug', function(req, res) {
+function showProfile(req, res) {
     // Note: 
     // console.log(req.params) is displayed as expected, but
     // console.log("object: " + obj) would be displayed as: "object: [Object obj]"
@@ -33,12 +42,11 @@ router.get('/:username/:post_slug', function(req, res) {
 
   // grab user profile
   // grab the post
-  res.send('You are reading ' + req.params.post_slug + 'from ' + req.params.username);
-});
+  res.send('You are reading ' + req.params.post_slug + ' from ' + req.params.username);
+};
 
-//404
-router.use(function(req, res) {
+function show404(req, res) {
   res.status(404);
   //res.send('404 not found');
   res.sendFile(path.join(__dirname, '../404.html'));
-});
+};
