@@ -1,6 +1,6 @@
-var app = require('express')();
-var port = process.env.PORT || 8080;
-var morgan = require('morgan');
+var app        = require('express')();
+var port       = process.env.PORT || 8080;
+var morgan     = require('morgan');
 var bodyParser = require('body-parser');
 
 //configure
@@ -20,6 +20,11 @@ app.get('/about', function(req, res) {
 app.get('/contact', function(req, res) {
   res.sendFile(__dirname + '/contact.html');
 });
+
+app.post('/contact', function(req, res) {
+  console.log(req.body);
+  res.send('Hello, ' + req.body.name);
+})
 
 // start server
 app.listen(port, function() {
