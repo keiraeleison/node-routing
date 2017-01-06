@@ -33,6 +33,7 @@ function showProfile(req, res) {
     // console.log("object: " + obj) would be displayed as: "object: [Object obj]"
     // so instead use console.log("object: %O", obj) OR JSON.stringify(obj)
   console.log('These are the parameters: ' + JSON.stringify(req.params));
+  console.log(req.user);
 
   // grab user profile
   // grab the post
