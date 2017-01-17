@@ -1,18 +1,13 @@
-/**
- * You can start up our server by:
- */
+# Node Routing App #
 
-    nodemon server
+Sample Node app for displaying routing, middlewares and controllers.
 
-/**
- * The following packages are used:
- */
+## Run server ##
 
-// Install Express.js
-    npm install express --save
+    npm install
+    node server
 
-// Install Morgan - log all requests to console
-    npm install morgan --save
-
-// Install BodyParser - to parse the contact form's data
-    npm install body-parser --save
+## Packages used: ##
+* express //framework for Node.js
+* morgan // log all requests to console
+* body-parser // to parse the contact form's data
